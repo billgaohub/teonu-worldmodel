@@ -1,3 +1,11 @@
+# ⚠️ 已归档
+
+> 本项目已归档，内容合并至 [AI Governance Framework](https://github.com/billgaohub/AIUCE)。
+> 
+> 新的文件整理工具：[IPIPQ](https://github.com/billgaohub/ipipq)
+
+---
+
 # Teonu WorldModel Engine
 
 > 让 AI 系统具备"元认知调度"能力的架构引擎
