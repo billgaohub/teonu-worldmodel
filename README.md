@@ -1,58 +1,54 @@
-# ⚠️ 已归档
-
-> 本项目已归档，内容合并至 [AI Governance Framework](https://github.com/billgaohub/AIUCE)。
-> 
-> 新的文件整理工具：[IPIPQ](https://github.com/billgaohub/ipipq)
-
----
-
 # Teonu WorldModel Engine
 
-> 让 AI 系统具备"元认知调度"能力的架构引擎
+> 让 AI 系统具备元认知调度能力的架构引擎 / Architecture Engine for AI Metacognitive Scheduling
 
-[English README](README_EN.md)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Archived](https://img.shields.io/badge/Status-Arhived-lightgrey.svg)](#)
 
----
-
-## 核心定位
-
-**"系统的价值不在于它知道什么，而在于它在什么时候改变了自己的判断。"**
-
-Teonu WorldModel Engine 是一个开源的 AI 认知架构引擎，专注于解决 AI 系统的三大痼疾：
-
-| 痼疾 | Teonu 解法 |
-|------|-----------|
-| 🔥 **幻觉污染** — 假设直接当事实 | **法则1：假设≠事实**（LWG 推断必须标记验证） |
-| 🗑️ **熵增失控** — 知识无限堆积 | **法则2：认知必须可压缩**（遗忘/合并/摘要） |
-| 💥 **上下文膨胀** — token 预算爆炸 | **法则3：上下文受预算约束**（动态裁剪） |
-
-> 从 *"能思考的系统"* → **"能控制自己如何思考的系统"**
+[中文](README.md) · [English](README_EN.md)
 
 ---
 
-## 三层认知控制
+## What It Is
+
+Teonu WorldModel Engine is an open-source cognitive architecture engine that gives AI systems the ability to **control how they think** — not just what they know.
+
+> *"The value of a system is not what it knows, but when it changes its own judgment."*
+
+**三大痼疾 vs Teonu 解法 / Three Chronic Problems vs Teonu Solutions:**
+
+| 痼疾 Problem | 解法 Solution |
+|---------------|---------------|
+| 🔥 **幻觉污染 / Hallucination** — Assumptions treated as facts | **法则1：假设≠事实 / Assumption ≠ Fact** — LWG inferences must be marked for verification |
+| 🗑️ **熵增失控 / Entropy Overflow** — Knowledge堆积 unbounded | **法则2：认知必须可压缩 / Cognition Must Be Compressible** — forget/merge/summarize |
+| 💥 **上下文膨胀 / Context Explosion** — Token budget burst | **法则3：上下文受预算约束 / Context Has Budget** — dynamic pruning |
+
+---
+
+## Three-Layer Cognitive Control
 
 ```
-用户 Query
+User Query
     │
-    ├─── 输入控制（Ingest）─────► 决定什么能进入世界
+    ├─── 输入控制 / Ingest ──────► 决定什么能进入世界
     │
-    ├─── 上下文控制（Snapshot）──► 决定当前看到什么世界
+    ├─── 上下文控制 / Snapshot ──► 决定当前看到什么世界
     │
-    └─── 推理控制（LWG）────────► 决定如何理解世界
+    └─── 推理控制 / LWG ─────────► 决定如何理解世界
                     │
                     ▼
-            认知不是自由的，是被调度的
+        认知不是自由的，是被调度的
+    Cognition is not free — it is scheduled
 ```
 
 ---
 
-## 快速开始
+## Quick Start
 
 ```bash
 pip install teonu-worldmodel
 
-# 基本使用
 from teonu_worldmodel import WorldModelEngine
 
 wm = WorldModelEngine("/path/to/knowledge/")
@@ -63,15 +59,13 @@ print(result)
 
 ---
 
-## 核心概念
+## Core Concept: Node
 
-### 节点（Node）
-
-知识的基本单元，带生命周期：
+Knowledge unit with lifecycle:
 
 ```yaml
 id: bill_health
-title: Bill 健康追踪
+title: Bill 健康追踪 / Bill Health Tracker
 state:
   weight: 99.9
   date: 2026-04-08
@@ -81,34 +75,25 @@ lifecycle:
   half_life_days: 30
 ```
 
-### 三条系统法则
+---
+
+## Three System Laws
 
 ```python
-# 法则1：假设不得直接成为事实
-# LWG 生成的推断必须 confidence <= 0.6，必须标记 requires_validation
+# Law 1: Assumption ≠ Fact
+# LWG inferences must have confidence <= 0.6, marked requires_validation
 
-# 法则2：认知必须可压缩
-# 超过 10 条 history → 自动摘要化
-# pending 超时 → 自动遗忘或升级为 alert
+# Law 2: Cognition Must Be Compressible
+# > 10 history items → auto-summarize
+# pending timeout → auto-forget or escalate to alert
 
-# 法则3：上下文必须受预算约束
-# token budget 2000，超限时优先保留 stable + 高 confidence 节点
-```
-
-### 分层快照
-
-```
-snapshot/
-├── core.md        # 核心状态（永远小，<500 tokens）
-├── recent.md      # 最近 7 天事件
-├── decisions.md   # 决策摘要
-├── alerts.md      # 冲突 / 风险
-└── bridges.md     # 跨域桥接（防语义割裂）
+# Law 3: Context Has Hard Budget
+# Token budget 2000; when exceeded, preserve stable + high-confidence nodes first
 ```
 
 ---
 
-## 目录结构
+## Architecture
 
 ```
 teonu-worldmodel/
@@ -127,31 +112,35 @@ teonu-worldmodel/
 │   └── advanced_usage.py
 ├── tests/
 │   └── test_engine.py
-├── README.md
-├── README_EN.md
-├── LICENSE
-└── requirements.txt
+├── README.md / README_EN.md
+└── LICENSE
 ```
 
 ---
 
-## 适用场景
+## Use Cases / 适用场景
 
-- **个人 AI 助手**：构建有记忆、可追溯、自我修正的 AI 助理
-- **企业知识库**：防止知识污染，保证知识可信度
-- **AI Agent**：给 Agent 安装"认知刹车"，防止失控推断
-- **决策支持系统**：保证每个建议可追溯、可解释、可反转
+- **个人 AI 助手 / Personal AI Assistant** — 记忆、可追溯、自我修正
+- **企业知识库 / Enterprise Knowledge Base** — 防知识污染，保证可信度
+- **AI Agent** — 安装认知刹车，防止失控推断
+- **决策支持系统 / Decision Support** — 建议可追溯、可解释、可反转
 
 ---
 
-## 设计背景
+## Origin
 
-本项目源于 [SONUV](https://github.com/billgaohub/AIUCE) 系统（一个十一层架构的个人 AI 治理框架）的 L3 世界模型层实践。
+Derived from **SONUV** system — L3 WorldModel Layer practice.
 
-> 如果你关心 AI 系统的"认知质量"而非仅仅"认知数量"，Teonu WorldModel 是为你准备的。
+> *"If you care about cognitive quality, not just cognitive quantity, Teonu WorldModel is your engine."*
+
+---
+
+## Status
+
+⚠️ **Archived** — Merged into [AI Governance Framework](https://github.com/billgaohub/AIUCE)
 
 ---
 
 ## License
 
-MIT License — 详见 [LICENSE](LICENSE)
+MIT License · See [LICENSE](LICENSE)
